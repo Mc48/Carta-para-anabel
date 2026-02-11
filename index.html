@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Georgia', serif;
+  overflow: hidden;
+}
+
+/* ❤️ Corazones flotando */
+.heart {
+  position: absolute;
+  animation: float 6s linear infinite;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+@keyframes float {
+  from { transform: translateY(110vh); }
+  to { transform: translateY(-10vh); }
+}
+
+/* ✉️ Sobre */
+.envelope {
+  position: relative;
+  width: 320px;
+  height: 210px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Base */
+.envelope .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #c0392b;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+/* Tapa superior */
+.envelope .top {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-top: 105px solid #e74c3c;
+  top: 0;
+  transform-origin: top;
+  transition: transform 0.8s;
+}
+
+/* Tapa inferior */
+.envelope .bottom {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-bottom: 105px solid #b83226;
+  bottom: 0;
+}
+
+/* ❤️ Corazón sello */
+.seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 42px;
+  background: white;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 3;
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+/* 💔 Corazón desaparece */
+.open .seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+  pointer-events: none;
+}
+
+/* 📜 Carta */
+.letter {
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  opacity: 0;
+  overflow-y: auto;
+  transition: opacity 0.6s;
+}
+
+/* Abierto */
+.open .top {
+  transform: rotateX(180deg);
+}
+
+.open .letter {
+  opacity: 1;
+}
+
+/* Texto */
+h2 {
+  text-align: center;
+  color: #c0392b;
+  margin-top: 0;
+  min-height: 1.5em;
+}
+
+p {
+  font-size: 0.95em;
+  line-height: 1.4;
+}
+
+.photos img {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.hint {
+  position: absolute;
+  bottom: -35px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 0.9em;
+  transition: opacity 0.5s;
+}
+
+.open .hint {
+  opacity: 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Música -->
+<audio id="music" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="envelope" onclick="openEnvelope(this)">
+  <div class="back"></div>
+  <div class="top"></div>
+  <div class="bottom"></div>
+
+  <div class="seal">❤️</div>
+
+  <div class="letter">
+    <h2 id="typing"></h2>
+    <p>
+      Escrito con mucho amor 💖<br><br>
+      Si la belleza pudiera describirse con números, tendría que contar todos los granos de arena de la Tierra, todas las hojas de los árboles y todas las estrellas del cielo… y aun así nunca terminaría de describirte.
+Eres una mujer tan pequeña como una flor y tan delicada como un pétalo a la deriva del viento. Me atraes como la fuerza que ejerce la Tierra: caí hacia ti sin razón, tal como lo hizo la manzana de Newton, con un latido… con un fuerte latido. Mi corazón descendió del cielo a la Tierra en un instante único y precioso. Tú, mi único amor.
+Si el cielo fuera una hoja y el mar tinta, no sería suficiente para escribir todo lo que siento por ti. Y si tuviera un solo deseo, pediría que sigas brillando de la manera en que lo haces, que nada ni nadie apague ese brillo tan hermoso que hay en ti.
+Mi mayor anhelo es que estemos siempre juntos: vivir juntos, crecer juntos y soñar juntos en este camino llamado vida. Porque contigo soy feliz… realmente feliz, amor mío.
+Agradezco el simple hecho de tenerte a mi lado. Tal vez suene absurdo, pero en tu presencia incluso lo ordinario se vuelve increíble: tu risa, tu mano, incluso tu silencio, que es dulce. Contigo, hasta un martes cualquiera se vuelve hermoso, lleno de miradas y de una paz que se construye sin esfuerzo, así de simple.
+Mi mayor suerte es despertar y saber que estás cerca, y entender que este amor sencillo y profundo es el regalo más dulce que la vida pudo darme.
+Feliz cumpleaños, mi amor.
+Gracias por existir, gracias por ser tú.
+Con todo mi amor,
+Josthin.
+    </p>
+
+    <div class="photos">
+      <img src="imagen1.jpeg">
+      <img src="imagen2.jpeg">
+    </div>
+  </div>
+
+  <div class="hint">Toca el corazón ❤️</div>
+</div>
+
+<script>
+// ✉️ Abrir sobre
+function openEnvelope(el) {
+  el.classList.add("open");
+  document.getElementById("music").play();
+  typeText("Para ti, Anabel ❤️", "typing", 80);
+}
+
+// ✍️ Escritura automática
+function typeText(text, id, speed) {
+  let i = 0;
+  const el = document.getElementById(id);
+  el.innerHTML = "";
+  const interval = setInterval(() => {
+    el.innerHTML += text.charAt(i);
+    i++;
+    if (i === text.length) clearInterval(interval);
+  }, speed);
+}
+
+// ❤️ Corazones flotando
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 450);
+</script>
+
+</body>
+</html>
